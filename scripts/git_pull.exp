@@ -1,0 +1,7 @@
+#!/usr/bin/expect
+
+set passphrase [lindex $argv 0]
+spawn git pull
+expect "*Enter passphrase"
+send "$passphrase\r"
+interact
