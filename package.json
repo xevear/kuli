@@ -6,7 +6,7 @@
     "dev": "nodemon src/cli.ts",
     "prestart": "tsc",
     "start": "node dist/cli.js",
-    "prepare": "tsc"
+    "prepack": "tsc"
   },
   "keywords": [],
   "author": "",
