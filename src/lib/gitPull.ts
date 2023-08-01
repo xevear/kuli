@@ -1,11 +1,17 @@
 import { Request, Response } from "express";
 import path from "path";
+import { z } from "zod";
+
 import config from "../config";
 import verifySignature from "./verifySignature";
 import exec from "./exec";
 
+const schema = z.object({ ref: z.string() });
+
+type Schema = z.infer<typeof schema>;
+
 interface RequestBody extends Request {
-  body: { ref: string };
+  body: Schema;
 }
 
 const gitPull =
@@ -14,8 +20,14 @@ const gitPull =
       res.status(401).end();
       return;
     }
-    // Ref can be undefined, be aware handling body payload
-    // Add body validation
+
+    const payload = schema.safeParse(req.body);
+
+    if (!payload.success) {
+      res.status(400).json({ errors: payload.error.flatten() });
+      return;
+    }
+
     if (req.body.ref.split("/").pop() == config.branch) {
       try {
         await exec(

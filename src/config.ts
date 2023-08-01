@@ -34,16 +34,18 @@ type Config = z.infer<typeof Config>;
 
 let config: Config;
 
+const filename = "kuli.yml";
+
 try {
   config = yaml.load(
-    readFileSync(path.resolve(process.cwd(), "kuli.yml"), "utf-8")
+    readFileSync(path.resolve(process.cwd(), filename), "utf-8")
   ) as Config;
   if (!config) {
     throw new Error("File is empty");
   }
 } catch (err) {
   if (err instanceof Error) {
-    console.error("Failed to load ci.yml file: ");
+    console.error(`Failed to load ${filename} file: `);
     console.error(err.message);
   } else {
     console.error(err);
@@ -52,15 +54,6 @@ try {
 }
 
 const argv = process.argv.slice(2);
-
-const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
-  return {
-    // @ts-expect-error
-    message: `${ctx.defaultError}. ${Config.shape[issue.path[0]].description}`,
-  };
-};
-
-z.setErrorMap(customErrorMap);
 
 config.email = argv[0];
 config.WEBHOOK_SECRET = argv[1];
