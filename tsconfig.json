@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES6",
     "outDir": "./dist",
-    "module": "CommonJS",
     "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  },
-  "ts-node": {
-    "transpileOnly": true
+    "esModuleInterop": true
   }
 }
