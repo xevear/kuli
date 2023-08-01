@@ -3,9 +3,7 @@
   "version": "1.0.2",
   "description": "CI/CD",
   "scripts": {
-    "dev": "nodemon src/cli.ts",
-    "prestart": "tsc",
-    "start": "node dist/cli.js",
+    "dev": "nodemon src/server.ts",
     "prepack": "tsc"
   },
   "keywords": [],
