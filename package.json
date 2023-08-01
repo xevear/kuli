@@ -4,9 +4,9 @@
   "description": "CI/CD",
   "scripts": {
     "dev": "nodemon src/cli.ts",
-    "prestart": "npx tsc",
+    "prestart": "tsc",
     "start": "node dist/cli.js",
-    "prepare": "npx tsc"
+    "prepare": "tsc"
   },
   "keywords": [],
   "author": "",
