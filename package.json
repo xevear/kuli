@@ -1,6 +1,6 @@
 {
   "name": "@xevear/kuli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CI/CD",
   "scripts": {
     "dev": "nodemon src/cli.ts",
